@@ -1,5 +1,5 @@
-Name:		Sathya Vemulapalli
-B-Number:	B00982820
+Name:		Sathya Vemulapalli <br/>
+B-Number:	B00982820 <br/>
 Email:		svemulapalli@binghamton.edu or vsathya427@gmail.com
 
 All the test cases passed but getting some extraneous perl warnings(as shown below) while running the do-tests.sh file.
