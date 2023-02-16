@@ -8,9 +8,9 @@ All the test cases passed but getting some extraneous perl warnings(as shown bel
 
 The grammar rules I used :
 
-<Declaration> ::= "var" <Identifier> ":" <Type> ";"*
-<Type> ::= "number" | "string" | "record" <FieldDeclarations> "end"
-<FieldDeclaration> ::= <Identifier> ":" <Type> ";"*
-<Identifier> ::= ID
+" <Declaration> ::= "var" <Identifier> ":" <Type> ";"* "
+" <Type> ::= "number" | "string" | "record" <FieldDeclarations> "end" "
+" <FieldDeclaration> ::= <Identifier> ":" <Type> ";"* "
+" <Identifier> ::= ID "
 
 ## [Reference Code](https://zdu.binghamton.edu/cs571/slides/syntax/code/arith/arith.mjs?lang=js)
