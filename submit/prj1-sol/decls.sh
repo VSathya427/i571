@@ -6,4 +6,9 @@ dir=`dirname $0`
 #use $dir/ as prefix to run any programs in this dir
 #so that this script can be run from any directory.
 
+#!/bin/bash
+: > file.txt
 
+cat >> file.txt
+
+node Main.js
