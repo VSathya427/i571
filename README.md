@@ -2,6 +2,14 @@
 ### B-Number:	B00982820 <br/>
 ### Email:		svemulapalli@binghamton.edu or vsathya427@gmail.com
 
+Project 2 : 
+
+All test cases passed.
+
+<img width="722" alt="Screenshot 2023-03-07 at 9 16 42 PM" src="https://user-images.githubusercontent.com/56964957/223602304-eb1467fa-4ef0-4634-ba49-f975deccbe25.png">
+
+Project 1 :
+
 All the test cases passed but getting some extraneous perl warnings(as shown below) while running the do-tests.sh file. <br>
 
 <img width="844" alt="Screenshot 2023-02-16 at 1 06 52 AM" src="https://user-images.githubusercontent.com/56964957/219282410-0bfd5907-ac1e-4280-89b8-1300967f0877.png">
