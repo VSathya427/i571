@@ -2,13 +2,13 @@
 ### B-Number:	B00982820 <br/>
 ### Email:		svemulapalli@binghamton.edu or vsathya427@gmail.com
 
-### Project 2 : 
+### [Project 2](https://github.com/VSathya427/i571/tree/main/submit/prj2-sol) : 
 
 All test cases passed.
 
 <img width="722" alt="Screenshot 2023-03-07 at 9 16 42 PM" src="https://user-images.githubusercontent.com/56964957/223602304-eb1467fa-4ef0-4634-ba49-f975deccbe25.png">
 
-### Project 1 :
+### [Project 1](https://github.com/VSathya427/i571/tree/main/submit/prj1-sol) :
 
 All the test cases passed but getting some extraneous perl warnings(as shown below) while running the do-tests.sh file. <br>
 
