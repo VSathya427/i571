@@ -12,8 +12,11 @@
 ;;the order, i.e. sum n-units*unit-price over all items
 ;;must be recursive but cannot use loop or recur
 (defn items-total1 [items]
-  "return total price of all items"
-  :TODO)
+  "return total price of all items" 
+    (if
+    (empty? items) 0
+    (+ (* (:n-units (first items)) (:unit-price (first items)))
+             (items-total1 (rest items)))))  
 
 ;; #2: 15-points
 ;;given a list items of OrderItem and a category,
@@ -21,21 +24,29 @@
 ;;must be implemented using recursion
 (defn items-with-category1 [items category]
   "return sublist of items having specified category"
-  :TODO)
+    (cond
+    (empty? items) []
+    (= category (:category (first items))) (cons (first items) (items-with-category1 (rest items) category))
+    :imsleepy (items-with-category1 (rest items) category)))
+
 
 ;; #3: 15-points
 ;;same specs as items-total1 but must be implemented using
 ;;loop and recur
 (defn items-total2 [items]
-  "return total price of all items"
-  :TODO)
-
+  "return total price of all items using loop and recur"
+  (loop [total 0 rem-items items]
+    (if (empty? rem-items)
+      total
+      (recur (+ total (* (:n-units (first rem-items)) (:unit-price (first rem-items))))
+             (rest rem-items))))) 
+        
 ;; #4: 10-points
 ;;given a list items of OrderItem return a list of all the :sku's
 ;;cannot use explicit recursion
 (defn item-skus [items]
   "return :sku's of all items"
-  :TODO)
+  (map :sku items))
 
 ;; #5: 10-points
 ;;given a list items of OrderItem, return a list of skus of those elements
@@ -43,20 +54,22 @@
 ;;cannot use explicit recursion
 (defn expensive-item-skus [items price]
   "return list of :sku's of all items having :unit-price > price"
-  :TODO)
+  (for [item items
+          :when (> (:unit-price item) price)]
+      (:sku item)))
 
 ;; #6: 10-points
 ;;same specs as items-total1 but cannot use explicit recursion
 (defn items-total3 [items]
   "return total price of all items"  
-  :TODO)
+   (reduce + (map (fn[item](* (:n-units item) (:unit-price item))) items)))
   
 
 ;; #7: 10-points
 ;;same spec as items-with-category1, but cannot use explicit recursion
 (defn items-with-category2 [items category]
   "return sublist of items having specified category"
-  :TODO)
+  (filter (fn[item](= (:category item) category)) items))
 
 ;; #8: 15-points 
 ;;given a list items of OrderItem and an optional category
@@ -66,6 +79,7 @@
 ;;cannot use explicit recursion
 (defn item-category-n-units 
   "return sum of :n-units of items for category (all categories if unspecified)"
-  ([items] :TODO)
-  ([items category] :TODO))
-
+  ([items]
+    (reduce + (map :n-units items)))
+  ([items category]
+    (reduce + (map :n-units (filter (fn[item](= (:category item) category)) items)))))
