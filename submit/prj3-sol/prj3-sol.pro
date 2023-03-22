@@ -38,9 +38,16 @@ food_items([Item6]) :-
 % Total with the total for the order, i.e. sum n-units*unit-price over
 % all items.
 % Restriction: must be recursive, but may not define any auxiliary procedures.
-items_total1(_Items, _Total) :- 'TODO'.
+% items_total1(_Items, _Total) :- 'TODO'.
 
-:-begin_tests(items_total1, [blocked(todo)]).
+items_total1([], 0).
+
+items_total1([order_item(_, _, N, Price)|Rest], Total) :-
+    items_total1(Rest, RestTotal),
+    Total is N * Price + RestTotal.
+
+
+:-begin_tests(items_total1, []).
 test(empty) :-
     items_total1([], 0).
 test(single) :-
@@ -69,10 +76,18 @@ test(all) :-
 %
 % Hint: Implement as a wrapper around an auxiliary procedure items_total2/3
 % which uses an accumulator.
-items_total2(_Items, _Total) :- 'TODO'.
+%items_total2(_Items, _Total) :- 'TODO'.
 
+items_total2(Items, Total) :-
+    items_total2_helper(Items, 0, Total).
 
-:-begin_tests(items_total2, [blocked(todo)]).
+items_total2_helper([], Acc, Acc).
+
+items_total2_helper([order_item(_, _, N, Price)|Rest], Acc, Total) :-
+    NextAcc is Acc + N * Price,
+    items_total2_helper(Rest, NextAcc, Total).
+
+:-begin_tests(items_total2, []).
 test(empty) :-
     items_total2([], 0).
 test(single) :-
@@ -98,9 +113,17 @@ test(all) :-
 % Restriction: Must be implemented using recursion.
 %
 % Hint: X \= Y succeeds iff X = Y fails.
-items_with_category(_Items, _Category, _CategoryItems) :- 'TODO'.
+%items_with_category(_Items, _Category, _CategoryItems) :- 'TODO'.
 
-:-begin_tests(items_with_category, [blocked(todo)]).
+items_with_category([], _, []).
+items_with_category([order_item(ItemID, Category, _, _) | Rest], Category, [order_item(ItemID, Category, _, _) | CategoryItemsRest]) :-
+    items_with_category(Rest, Category, CategoryItemsRest).
+items_with_category([order_item(_, OtherCategory, _, _) | Rest], Category, CategoryItems) :-
+    OtherCategory \= Category,
+    items_with_category(Rest, Category, CategoryItems).
+
+
+:-begin_tests(items_with_category, []).
 test(cookware, nondet) :-
     order_items(Items),
     items_with_category(Items, cookware, CookwareItems),
@@ -122,9 +145,17 @@ test(unknown, nondet) :-
 % #4: 15-points
 % expensive_item_skus(Items, Price, ExpensiveSKUs): Match ExpensiveSKUs
 % with the SKUs of those order-items in Items having unit-price > Price.
-expensive_item_skus(_Items, _Price, _ExpensiveSKUs) :- 'TODO'.
+% expensive_item_skus(_Items, _Price, _ExpensiveSKUs) :- 'TODO'.
 
-:-begin_tests(expensive_item_skus, [blocked(todo)]).
+expensive_item_skus([], _, []).
+expensive_item_skus([order_item(Sku, _, _, Price)|T], Thres, [Sku|ExpensiveSKUs]) :-
+    Price > Thres,
+    expensive_item_skus(T, Thres, ExpensiveSKUs).
+expensive_item_skus([_|T], Thres, ExpensiveSKUs) :-
+    expensive_item_skus(T, Thres, ExpensiveSKUs).
+
+
+:-begin_tests(expensive_item_skus, []).
 test(gt20, nondet) :-
     order_items(Items),
     expensive_item_skus(Items, 20, [ap273]).
@@ -146,9 +177,15 @@ test(all, nondet) :-
 % Restriction: must be defined using a single rule, cannot use recursion.
 %
 % Hint: use member/2
-expensive_item_sku(_Items, _Price, _ExpensiveSKU) :- 'TODO'.
+% expensive_item_sku(_Items, _Price, _ExpensiveSKU) :- 'TODO'.
 
-:-begin_tests(expensive_item_sku, [blocked(todo)]).
+expensive_item_sku(Items, Price, ExpensiveSKU) :-
+    findall(SKU, (
+        member(order_item(SKU, _, UnitPrice), Items),
+        UnitPrice > Price
+    ), ExpensiveSKU).
+
+:-begin_tests(expensive_item_sku, []).
 test(gt20, all(Z = [ap273])) :-
     order_items(Items),
     expensive_item_sku(Items, 20, Z).
