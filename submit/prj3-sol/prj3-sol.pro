@@ -179,12 +179,10 @@ test(all, nondet) :-
 % Hint: use member/2
 % expensive_item_sku(_Items, _Price, _ExpensiveSKU) :- 'TODO'.
 
-expensive_item_sku(Items, Price, ExpensiveSKU) :-
-    findall(SKU, (
-        member(order_item(SKU, _, UnitPrice), Items),
-        UnitPrice > Price
-    ), ExpensiveSKU).
-
+expensive_item_sku(OrderItems, Thres, _ExpensiveSKUs) :-
+    (member(order_item(_Sku, _, _, Price), OrderItems), Price > Thres).
+    
+    
 :-begin_tests(expensive_item_sku, []).
 test(gt20, all(Z = [ap273])) :-
     order_items(Items),
@@ -236,9 +234,21 @@ test(all, all(Z = [cw123, cw126, ap723, cw127, ap273, fd825])) :-
 % a left plus expression accumulator.  Initialize accumulator to an
 % invalid plus expression and special-case that initial accumulator
 % in the base cases.
-left_plus(_UnrestrictedPlusExpr, _LeftPlusExpr) :- 'TODO'.
+%left_plus(_UnrestrictedPlusExpr, _LeftPlusExpr) :- 'TODO'.
+
+left_plus(Expr, LeftExpr) :-
+    left_plus(Expr, 0, LeftExpr).
+
+left_plus(Expr, Acc, LeftExpr) :-
+    atomic(Expr),
+    (Acc = 0 -> LeftExpr = Expr ; LeftExpr = Acc + Expr).
     
-:- begin_tests(left_plus, [blocked(todo)]).
+left_plus(A + B, Acc, LeftExpr) :-
+    left_plus(A, Acc, LeftExprA),
+    left_plus(B, LeftExprA, LeftExpr).
+
+    
+:- begin_tests(left_plus, []).
 test(int, nondet) :-
     left_plus(1, 1).
 test(atom, nondet) :-
