@@ -40,11 +40,14 @@ food_items([Item6]) :-
 % Restriction: must be recursive, but may not define any auxiliary procedures.
 % items_total1(_Items, _Total) :- 'TODO'.
 
-items_total1([], 0).
+items_total2(OrderItems, Total) :-
+    items_total2(OrderItems, 0, Total).
 
-items_total1([order_item(_, _, N, Price)|Rest], Total) :-
-    items_total1(Rest, RestTotal),
-    Total is N * Price + RestTotal.
+items_total2([], Acc, Acc).
+
+items_total2([order_item(_, _, N, Price)|Rest], Acc, Total) :-
+    NewAcc is Acc + N * Price,
+    items_total2(Rest, NewAcc, Total).
 
 
 :-begin_tests(items_total1, []).
