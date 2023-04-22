@@ -6,7 +6,7 @@
 
 All test cases passed.
 
-<img width="837" alt="Screenshot 2023-04-21 at 9 31 03 PM" src="https://user-images.githubusercontent.com/56964957/233754762-e4570abd-ed6b-4f8a-a32c-44643d30bc5e.png">
+<img width="837" alt="Screenshot 2023-04-21 at 9 32 02 PM" src="https://user-images.githubusercontent.com/56964957/233754804-61576362-50b2-45f4-8d6f-803c1c928936.png">
 
 
 ### [Project 3](https://github.com/VSathya427/i571/tree/main/submit/prj3-sol) : 
