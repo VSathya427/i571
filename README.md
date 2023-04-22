@@ -2,6 +2,13 @@
 ### B-Number:	B00982820 <br/>
 ### Email:		svemulapalli@binghamton.edu or vsathya427@gmail.com
 
+### [Project 4](https://github.com/VSathya427/i571/tree/main/submit/prj4-sol) : 
+
+All test cases passed.
+
+<img width="837" alt="Screenshot 2023-04-21 at 9 31 03 PM" src="https://user-images.githubusercontent.com/56964957/233754762-e4570abd-ed6b-4f8a-a32c-44643d30bc5e.png">
+
+
 ### [Project 3](https://github.com/VSathya427/i571/tree/main/submit/prj3-sol) : 
 
 All test cases passed.
